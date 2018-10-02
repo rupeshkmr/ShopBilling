@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for obj in object_list %}
+	<div class="row"><div class="col"><h1>Shop Details</h1></div>
+		<div class="col"><h1>Bank Details</h1></div>
+		</div>
+	<div class="row"><div class="col"><hr/></div></div>
+	<div class="row"><div class="col">
+		<h2>Name:{{obj.name}}</h2><br/>
+		GSTIN: {{obj.gstin}}
+	</div>
+	<div class="col">
+		<h2>Name:{{obj.bank}}</h2><br/>
+		A/c No: {{obj.bank.ac_no}}<br/>
+		Branch: {{obj.bank.branch}}<br/>
+		IFSC: {{obj.bank.ifsc}}
+	</div> </div>
+{% endfor %}
+{% endblock %}
+

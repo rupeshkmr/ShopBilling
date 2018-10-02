@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row"><div class="col"><h1>Products</h1></div></div>
+<div class="row"><div class="col"><br/><hr/></div></div>
+{% for obj in object_list %}
+<div class="row"><div class="col"><h2>Name:{{ obj.product }}</h2></div></div>
+<div class="row"><div class="col">Type: {{ obj.type }}</div></div>
+<div class="row"><div class="col"><br/><hr/></div></div>
+
+
+{% endfor %}
+{% endblock %}

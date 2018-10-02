@@ -1,0 +1,6 @@
+<form method="POST" action="{% url 'receipt:cart-update' %}" class="form">
+	{% csrf_token %}
+	<input type="hidden" name="cart_id" value="{{ cart.id }}"/>
+<button type="submit" class="btn btn-link">Remove</button>
+
+</form>

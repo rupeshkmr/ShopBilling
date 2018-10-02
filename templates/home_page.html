@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="text-center">
+        <h1>{{ title }}</h1>
+        <h1>Hello, world! <p>This is Piyush</p></h1>
+
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            <p>{{ content }}</p>
+        </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="row">
+            <div class="col">
+                <h1>Premium</h1>
+                {{ premium_content }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}

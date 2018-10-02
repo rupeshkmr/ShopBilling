@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+    <form action="" method="post">{% csrf_token %}
+    <div class="col">Title: {{ form.item }}<br/></div><div>
+<br/>    <div class="row">
+        <div class="col">
+           Brand: {{ form.brand }}<br/>
+        </div>
+    </div><br/>
+    <div class="row">
+        <div class="col">
+          Quantity: {{ form.quantity }} <br/>
+        </div>
+    </div><br/>
+            <div class="row">
+        <div class="col">
+          Cost: {{ form.cost_pu }}<br/>
+        </div>
+    </div><br/>
+      <div class="row">
+        <div class="col">
+           HSN: {{ form.hsn }}
+        </div>
+    </div>
+
+<br/>
+
+             <button type="submit" class="btn btn-primary"> Submit </button>
+</form>
+    </div>
+
+{% endblock %}

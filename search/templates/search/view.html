@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col col-auto mx-auto">
+		{% include 'search/snippets/search-form.html' %}<br/>
+	</div>
+</div>
+{% if object_list %}
+<div class="row"><div class="col">
+	<h3>Records for date {{ object_list.first.time }}</h3>
+</div></div>
+<table class="table">
+	<thead>
+	<tr>
+		<th scope="col">#</th>
+		<th scope="col">Invoice No</th>
+		<th scope="col">Bill To</th>
+		<th scope="col">Amount</th>
+		<th scope="col">Date</th>
+	</tr>
+	</thead>
+{% for obj in object_list %}
+
+<tr>
+	<td>{{ forloop.counter }}</td>
+	<td>{{obj.invoice_no}}</td>
+	<td>{{ obj.customer_info.name }}</td>
+	<td>{{ obj.sub_total }}</td>
+	<td>{{ obj.time }}</td>
+</tr>{% endfor %}
+
+</table>
+{% else %}{% if object_list != None %}
+<div class="row"><div class="col"><h1>Sorry! No records found</h1></div></div>
+{% else %}
+<div class="row"><div class="col"><h1>Please Enter A date</h1></div></div>
+{% endif %}
+{% endif %}
+{% endblock %}

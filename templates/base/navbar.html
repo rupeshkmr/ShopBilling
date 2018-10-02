@@ -1,0 +1,88 @@
+{% url 'home' as home_url%}
+{% url 'profile:profile-page' as profile_url%}
+{% url 'books:list' as books_list_url%}
+{% url 'login' as login_url%}
+{% url 'logout' as logout_url%}
+{% url 'register' as register_url%}
+{% url 'cart:home' as cart_url%}
+{% url 'items:item-list' as item_url %}
+{% url 'student-register:issue-book' as issue_url %}
+{% url 'student-register:return-book' as return_url %}
+{% url 'student-register:register-student' as reg_student_url %}
+{% url 'books:register-books' as reg_book_url %}
+<nav class="navbar navbar-expand-md mb-3 navbar-dark bg-dark"><div class="container">
+
+    <a class="navbar-brand" href="{{ home_url }}"><img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">{% if brand_name %} Sukanya Ladies Collection<!--{{ brand_name }}--> {% else %}Recliba {% endif %}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+        {% if request.user.is_staff == False and request.user.is_authenticated %}
+      <li class="nav-item {% if request.path == profile_url %}active{% endif %}">
+        <a class="nav-link" href="{{ profile_url }}">Profile</a>
+      </li>{% endif %}
+
+        {% if request.user.is_authenticated == False %}
+<li class="nav-item {% if request.path == login_url %}active{% endif %}">
+        <a class="nav-link" href="{{ login_url }}"> Login</a>
+      </li>
+<li class="nav-item {% if request.path == register_url %}active{% endif %}">
+        <a class="nav-link" href="{{ register_url }}">Register</a>
+      </li>
+        {% endif %}
+       {% if request.user.is_authenticated %}
+        <li class="nav-item {% if request.path == 'receipt:new-bill' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'receipt:new-bill' %}"><b>Bill</b></a>
+        </li>
+        <li class="nav-item {% if request.path == 'search:query' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'search:query' %}">Records</a>
+        </li>
+
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ item_url }}">Items</a>
+          <a class="dropdown-item" href="{% url 'items:add-item' %}">Add Items</a>
+          <a class="dropdown-item" href="{% url 'products:add-product' %}">Add Products</a>
+          <a class="dropdown-item" href="{% url 'brands:add-brand' %}">Add Brands</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'shop:shop-detail' %}">Sukanya Ladies Collection</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Shop
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'shop:bank' %}">Add Bank</a>
+          <a class="dropdown-item" href="{% url 'shop:update-detail' '1'%}">Update Shop</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'shop:shop-detail' %}">Sukanya Ladies Collection</a>
+        </div>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ logout_url }}">Log0ut</a>
+      </li>
+{% endif %}
+      <!--<li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>-->
+   <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+
+    </ul>
+{#      {% include 'search/snippets/search-form.html' %}#}
+  </div>
+    </div>
+
+</nav>

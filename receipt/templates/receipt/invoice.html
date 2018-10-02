@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% url 'student-register:detail' as student_url %}
+{% block content %}
+<div class="row">
+	<div class="col col-auto mx-auto"><h4>M/s. {{ object.shop_details.name }}</h4></div></div>
+
+<div class="row">
+	<div class="col col-auto mx-auto">{{ object.shop_details.address }}</div></div>
+<div class="row">
+<div class="col col-auto mx-auto">Mob No. {{ object.shop_details.mobile }}</div>
+</div><br/>
+<div class="row"><div class="col"><hr/></div></div>
+
+<div class="row">
+	<div class="col-auto mx-auto">GSTIN:-{{ object.shop_details.gstin }}</div>
+</div>
+<div class="row">
+	<div class="col col-auto mx-auto"><h5>TAX INVOICE</h5></div>
+</div>
+<div class="row"><div class="col"><hr/></div></div>
+<div class="row"><div class="col col-auto mr-auto">
+	Invoice No.: {{ object.invoice_no }}
+	</div>
+	<div class="col col-auto ml-auto">
+		Invoice Date: {{ object.time }}
+	</div>
+</div>
+<div class="row"><div class="col"><hr/></div></div>
+<div class="row"><div class="col col-auto ">Name: {{ object.customer_info }}
+</div>
+</div>
+<div class="row"><div class="col col-auto ">Ph No: {{ object.customer_info.mobile_no }}
+</div>
+</div>
+<div class="row"><div class="col"><hr/></div></div>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S No.</th>
+      <th scope="col">Item</th>
+      <th scope="col">HSN</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Meter</th>
+<th scope="col">Rate</th>
+
+	    <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>{% with obj=object.cart_item.all %}
+{% for cart in obj %}
+
+      <!--<th scope="row">#</th>-->
+      <td>{{ forloop.counter }}</td>
+      <td>{{cart.item}}</td>
+      <td>{{ cart.item.hsn }}</td>
+      <td>{{ cart.quantity }}</td>
+      <td>{{ cart.meter }}</td>
+	  <td>&#x20b9 {{ cart.item.cost_pu }}</td>
+	  <td>&#x20b9 {{ cart.price }}</td>
+	  <td><a href="">{% include 'receipt/snippets/updatecart.html' with cart=cart %}</a></td>
+    </tr>
+{% endfor %}
+   </tbody>
+    </table>
+<table class="table">
+	<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td>Discount</td>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td></td>
+
+	<td> {{ object.additional_disc }} %</td>
+</tr>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td>Total Amount before Tax</td>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td></td>
+
+	<td> &#x20b9 {{ object.total }}</td>
+</tr>
+	<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td>Add CSGT</td>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td></td>
+
+	<td>&#x20b9 {{ object.cgst }}</td>
+</tr>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td>Add SGST</td>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td></td>
+
+	<td>&#x20b9 {{ object.sgst }}</td>
+</tr>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td>Add IGST</td>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td></td>
+
+	<td>&#x20b9 {{ object.igst }}</td>
+</tr>
+
+	<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td>Total Amount After Tax</td>
+  <td></td>
+  <td></td>
+  <td></td>
+	<td></td>
+
+	<td>&#x20b9 {{ object.sub_total }}</td>
+</tr>
+    </table>
+
+{% endwith %}
+<div class="row">
+ <div class="col col-auto mx-auto"><a href="{% url 'receipt:create-cart' %}" class="btn btn-small btn-primary">Add Item</a></div>
+</div>
+	{% endblock %}
+
+

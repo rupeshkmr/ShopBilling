@@ -1,0 +1,25 @@
+<div class="card" style="width: 18rem;height : 18rem;">
+    {% if instance.image %}
+    <a href="{{ instance.get_absolute_url }}"><img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title }} logo"></a>
+  {% endif %}
+    <div class="card-body">
+    <h5 class="card-title">{{ instance.item }}</h5>
+        <p class="card-text">{{ instance.quantity }}</p>
+        <p class="card-text">{{ instance.meter }}Mtr</p>
+        <p class="card-text">{{ instance.product}}</p>
+        <p class="card-text">{{ instance.brand }}</p>
+        <p class="card-text">{{ instance.hsn }}</p>
+
+        <a href="{# { instance.get_absolute_url } #}" class="btn btn-primary">View</a>
+    </div>
+</div>
+<!--item       = models.CharField(max_length=120)-->
+    <!--brand      = models.ForeignKey(Brand)-->
+    <!--product    = models.ForeignKey(Product)-->
+    <!--cp         = models.DecimalField(decimal_places=2, max_digits=10)-->
+    <!--sp         = models.DecimalField(decimal_places=2, max_digits=10)-->
+    <!--hsn        = models.BigIntegerField(unique=True)-->
+    <!--cgst       = models.DecimalField(max_digits=2,decimal_places=2, default=0.00)-->
+    <!--sgst       = models.DecimalField(max_digits=2,decimal_places=2, default=0.00)-->
+    <!--quantity   = models.CharField(max_length=120, blank=True, null=True)-->
+    <!--readymade  = models.BooleanField(default=False)-->

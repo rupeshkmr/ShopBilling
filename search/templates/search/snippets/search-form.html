@@ -1,0 +1,9 @@
+<form method="GET" action="{% url 'search:query' %}" class="form-ml-auto">
+	<div class="input-group">
+		<input class="form-control" type="search" placeholder="Enter date dd-mm-yyyy" name="q" aria-label="Search" value="{{request.get.q}}"/>
+		<span class="input-group-button">
+			<button class="btn btn-outline-success" type="submit">Search</button>
+		</span>
+
+	</div>
+</form>
